@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('contextmenu', event => event.preventDefault());
     const openButton = document.getElementById('openInvitation');
     const coverPage = document.getElementById('coverPage');
     const mainContent = document.getElementById('mainContent');
@@ -8,11 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const guest = urlParams.get('to');
     const guestNameElement = document.getElementById('guestName');
 
-    if (guest && guestNameElement) {
-        const sanitizedGuest = guest.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        guestNameElement.innerHTML = `Dear ${sanitizedGuest},<br>You are cordially invited`;
+    if (guestNameElement) {
+        if (guest) {
+            // If a name is in the URL, format it
+            const sanitizedGuest = guest.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            guestNameElement.innerHTML = `Dear, ${sanitizedGuest}`;
+        } else {
+            // If no name, it will just use the default "Dear, Guest" from the HTML
+            // No action needed here, but the 'else' makes the logic clear.
+        }
     }
-
+   
     // --- Cover Page Logic ---
     mainContent.style.display = 'none';
     openButton.addEventListener('click', () => {
@@ -158,77 +165,127 @@ async function fetchWishes() {
     // ⬇️ IMPORTANT: You'll need to create this URL using the guide below
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxmR4118wxh_JB4b98e17BfScdkNBk6cwETYQCEqbQgLcEMR6p0j0_sCQqPZ7y1XlmoUA/exec'; 
 
-    wishForm.addEventListener('submit', e => {
-        e.preventDefault();
-        const submitBtn = wishForm.querySelector('button');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
+    // Get the two containers we want to toggle
+const wishesFormArea = document.querySelector('.wishes-form-area');
+const wishesBoardArea = document.querySelector('.wishes-board-area');
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(wishForm) })
-            .then(response => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Wish';
-                alert('Thank you! Your wish has been sent.');
-                wishForm.reset();
-                setTimeout(fetchWishes, 1000); // Refresh the board after a short delay
-            })
-            .catch(error => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Wish';
-                alert('Sorry, there was an error. Please try again.');
-                console.error('Error!', error.message);
-            });
-    });
+wishForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const submitBtn = wishForm.querySelector('button');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(wishForm) })
+        .then(response => {
+            alert('Thank you! Your wish has been sent.'); // The success pop-up
+            
+            // This is the new logic for mobile
+            if (window.innerWidth <= 768) {
+                // 1. Hide the form container
+                wishesFormArea.style.display = 'none';
+                
+                // 2. Show the board container
+                // We use 'flex' because that's its original display style on mobile
+                wishesBoardArea.style.display = 'flex';
+            }
+
+            wishForm.reset();
+            setTimeout(fetchWishes, 500); // Refresh the board with the new wish
+        })
+        .catch(error => {
+            alert('Sorry, there was an error. Please try again.');
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            // Re-enable the button regardless of the outcome
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Wish';
+        });
+});
 
     // --- Gallery & Video Logic ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const galleryImages = Array.from(document.querySelectorAll('.image-grid img'));
-    const imageSources = galleryImages.map(img => img.src);
-    let currentImageIndex = 0;
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const galleryImages = Array.from(document.querySelectorAll('.image-grid img'));
+const imageSources = galleryImages.map(img => img.src);
+let currentImageIndex = 0;
 
-    function showImage(index) {
-        lightboxImg.src = imageSources[index];
+function showImage(index, direction = 'next') {
+    // Determine animation classes based on direction
+    const outClass = direction === 'next' ? 'slide-out-to-left' : 'slide-out-to-right';
+    const inClass = direction === 'next' ? 'slide-in-from-right' : 'slide-in-from-left';
+
+    // 1. Add the 'out' animation
+    lightboxImg.classList.add(outClass);
+
+    // 2. Wait for the out animation to be halfway, then swap the image
+    setTimeout(() => {
         currentImageIndex = index;
-    }
+        lightboxImg.src = imageSources[currentImageIndex];
 
-    galleryImages.forEach((img, index) => {
-        img.addEventListener('click', () => {
-            lightbox.classList.add('active');
-            showImage(index);
-        });
-    });
+        // 3. Swap animation classes
+        lightboxImg.classList.remove(outClass);
+        lightboxImg.classList.add(inClass);
+    }, 150); // Half of the 0.3s animation duration
 
-    document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
-    document.querySelector('.lightbox-next').addEventListener('click', () => {
-        showImage((currentImageIndex + 1) % imageSources.length);
-    });
-    document.querySelector('.lightbox-prev').addEventListener('click', () => {
-        showImage((currentImageIndex - 1 + imageSources.length) % imageSources.length);
-    });
+    // 4. Clean up the 'in' class after the animation finishes
+    setTimeout(() => {
+        lightboxImg.classList.remove(inClass);
+    }, 300);
+}
 
-    // Swipe navigation for lightbox
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-    lightbox.addEventListener('touchend', e => {
-        let touchEndX = e.changedTouches[0].clientX;
-        if (touchStartX - touchEndX > 50) { document.querySelector('.lightbox-next').click(); }
-        if (touchStartX - touchEndX < -50) { document.querySelector('.lightbox-prev').click(); }
+galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        // For the first open, just set the image without animation
+        currentImageIndex = index;
+        lightboxImg.src = imageSources[currentImageIndex];
     });
+});
 
-    // Video autoplay on scroll
-    const video = document.querySelector('.gallery-video');
-    video.volume = 0.05; // Set initial volume to 5%
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-    }, { threshold: 0.5 }); // Play when 50% of the video is visible
-    observer.observe(video);
+document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
+
+document.querySelector('.lightbox-next').addEventListener('click', () => {
+    const nextIndex = (currentImageIndex + 1) % imageSources.length;
+    showImage(nextIndex, 'next');
+});
+
+document.querySelector('.lightbox-prev').addEventListener('click', () => {
+    const prevIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
+    showImage(prevIndex, 'prev');
+});
+
+// Swipe navigation for lightbox
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+lightbox.addEventListener('touchend', e => {
+    let touchEndX = e.changedTouches[0].clientX;
+    if (touchStartX - touchEndX > 50) { document.querySelector('.lightbox-next').click(); }
+    if (touchStartX - touchEndX < -50) { document.querySelector('.lightbox-prev').click(); }
+});
+
+// Logic to close lightbox when clicking on the background
+lightbox.addEventListener('click', (event) => {
+  // If the clicked element is the lightbox itself (the background)
+  // and not a child element like the image or buttons, then close it.
+  if (event.target === event.currentTarget) {
+    lightbox.classList.remove('active');
+  }
+});
+
+// Video autoplay on scroll
+const video = document.querySelector('.gallery-video');
+video.volume = 0.05; // Set initial volume to 5%
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+}, { threshold: 0.5 }); // Play when 50% of the video is visible
+observer.observe(video);
 
 // --- RSVP Form Submission without Redirect ---
 const rsvpForm = document.getElementById('rsvp-form');
