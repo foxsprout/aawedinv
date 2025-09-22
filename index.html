@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Aulia & Alief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cover-page" id="coverPage">
+        <div class="cover-content">
+            <h4 id="guestName">You are cordially invited to celebrate</h4>
+            <h3>The Wedding Of</h3>
+            <h1>Aulia & Alief</h1>
+            <button id="openInvitation">Open Invitation</button>
+        </div>
+    </div>
+
+    <div class="scroll-container" id="mainContent">
+
+        <section class="scroll-section" id="hero">
+            <div class="section-content hero-content">
+                <span>Save The Date</span>
+                <h1>Aulia & Alief</h1>
+                <h2>16 . 11 . 2025</h2>
+                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Aulia+%26+Alief&dates=20251116T080000Z/20251116T140000Z&details=Join+us+to+celebrate+the+wedding+of+Astari+Aulianur+Qonita+and+Alief+Patria+Abdullah.%0A%0ABlessing+Ceremony%3A+15%3A00+WIB%0AReception%3A+19%3A00+WIB&location=Gedung+Granadi,+Jl.+H.+R.+Rasuna+Said+No.Kav.+8-9+Blok+X+1,+Kuningan+Tim.,+Kecamatan+Setiabudi,+Kota+Jakarta+Selatan" target="_blank" class="calendar-button">Add to Calendar</a>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="invitation">
+            <div class="section-content text-center">
+                <p class="verse">
+                    "And one of His signs is that He created for you spouses from among yourselves so that you may find comfort in them. And He has placed between you compassion and mercy. Surely in this are signs for people who reflect."
+                </p>
+                <p class="verse-source">(Ar-Rum: 21)</p>
+            </div>
+        </section>
+        
+        <section class="scroll-section" id="couple">
+            <div class="section-content couple-container">
+                <div class="person-details">
+                    <img src="2. The bride.webp" alt="The Bride" class="couple-photo"/>
+                    <h2>Astari Aulianur Qonita</h2>
+                    <p>Second child of</p>
+                    <p>The late Mr. Semrin Sasono</p>
+                    <p>& Mrs. Imaniati Teguh Putranti</p>
+                </div>
+                <div class="ampersand">&</div>
+                <div class="person-details">
+                    <img src="3. The groom.webp" alt="The Groom" class="couple-photo"/>
+                    <h2>Alief Patria Abdullah</h2>
+                    <p>First child of</p>
+                    <p>Mr. H. Sujarwo Henri Kustiono</p>
+                    <p>& Mrs. Hj. Iis Sriyani</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="story">
+            <div class="section-content story-content">
+                <h2>Our Story</h2>
+                <div class="story-text">
+                    <p>Our story began not with a swipe right, but with a job interview. In what can only be described as the most successful screening call of all time, Alief (the candidate) first met Aulia (the HR) on March 3, 2021.</p><br>
+                    <p>He got the job, and it was during an on-camera meeting a month later that a quiet spark was lit. That spark remained a well-kept secret for nearly three years (at least, that’s what Alief thought) until fate—with a little help from mutual friends—reconnected us over an impromptu dinner in January 2024.</p><br>
+                    <p>From there, the connection blossomed, leading to a long-awaited memorable moment on 24.04.24, when Aulia finally received Alief’s confession. On June 1, 2025, with the heartfelt blessings of Aulia’s mother and brother, we committed to our forever.</p><br>
+                    <p>Now, we are counting down the days until our ultimate partnership begins, as we get ready to build our most beautiful project: a warm and happy home together.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="events">
+            <div class="section-content events-container">
+                <h2>Wedding Events</h2>
+                <div class="event-details">
+                    <div class="event-card">
+                        <h3>Blessing Ceremony</h3>
+                        <p>Sunday, 16 November 2025</p>
+                        <p>15:00 - 17:00 WIB</p>
+                    </div>
+                    <div class="event-card">
+                        <h3>Reception</h3>
+                        <p>Sunday, 16 November 2025</p>
+                        <p>19:00 - 21:00 WIB</p>
+                    </div>
+                </div>
+                <div class="address">
+                    <p><strong>Gedung Granadi</strong></p>
+                    <p>Jl. H. R. Rasuna Said No.Kav. 8-9 Blok X 1, Kuningan Timur, Setiabudi, Jakarta Selatan</p>
+                </div>
+                <a href="https://maps.app.goo.gl/KFRcuLh2Z8sNQ7ML7" target="_blank" class="map-button">View on Google Maps</a>
+                <div id="countdown">
+                    </div>
+            </div>
+        </section>
+        
+        <section class="scroll-section" id="rsvp">
+            <div class="section-content rsvp-container">
+                <h2>RSVP</h2>
+                <p>Please let us know if you can celebrate with us.</p>
+                <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST" class="rsvp-form">
+                    <input type="hidden" name="access_key" value="d5ff70aa-635c-4a1b-95a1-f33bfe8bbe41">
+                    <input type="hidden" name="subject" value="New RSVP from Aulia & Alief's Wedding">
+                    <input type="hidden" name="from_name" value="Wedding Invitation">
+
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Your Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Will you be attending?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="attendance" value="Blessing & Reception" checked> Both</label>
+                            <label><input type="radio" name="attendance" value="Blessing Only"> Blessing Only</label>
+                            <label><input type="radio" name="attendance" value="Reception Only"> Reception Only</label>
+                            <label><input type="radio" name="attendance" value="Cannot Attend"> Can't Attend</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirm Attendance</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="wishes">
+    <div class="section-content wishes-container">
+        <div class="wishes-form-area">
+            <h2>Wedding Wishes</h2>
+            <p>Leave a wish for us to read and cherish forever.</p>
+            <form id="wish-form" class="rsvp-form">
+                <div class="form-group">
+                    <label for="wisher-name">Your Name</label>
+                    <input type="text" id="wisher-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="wish-message">Your Wish</label>
+                    <textarea id="wish-message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Wish</button>
+            </form>
+        </div>
+        <div class="wishes-board-area">
+            <div class="wishes-board" id="wishes-board">
+                <p class="loading-wishes">Loading wishes...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="scroll-section" id="gallery">
+    <div class="section-content gallery-container">
+        <h2>Our Moments</h2>
+        <video src="hlg aulia & alif.mp4" loop muted playsinline controls class="gallery-video"></video>
+        <div class="image-scroller">
+            <div class="image-grid">
+                <img src="0 dan 11. Cover Utama.webp" alt="Gallery image">
+                <img src="1. Wedding of.webp" alt="Gallery image">
+                <img src="2. The bride.webp" alt="The Bride">
+                <img src="3. The groom.webp" alt="The Groom">
+                <img src="MAHE0219.webp" alt="Gallery image">
+                <img src="6. Wedding event.webp" alt="Gallery image">
+                <img src="8. Wedding gift.webp" alt="Gallery image">
+                <img src="9. Reservasi.webp" alt="Gallery image">
+                <img src="10. Wedding Wish.webp" alt="Gallery image">
+            </div>
+        </div>
+    </div>
+</section>
+        
+        <section class="scroll-section" id="gifting">
+            <div class="section-content gifting-container">
+                <h2>Wedding Gift</h2>
+                <p>Your presence is the greatest gift of all. However, should you wish to honour us with a gift, you may do so via:</p>
+                <div class="gift-cards">
+                    <div class="gift-card">
+                        <h4>Bank Central Asia (BCA)</h4>
+                        <p>4730394328</p>
+                        <p>a/n Astari Aulianur Qonita</p>
+                        <button class="copy-btn" data-clipboard-text="4730394328">Copy Account</button>
+                    </div>
+                    <div class="gift-card">
+                        <h4>Bank Central Asia (BCA)</h4>
+                        <p>8420284391</p>
+                        <p>a/n Alief Patria Abdullah</p>
+                        <button class="copy-btn" data-clipboard-text="8420284391">Copy Account</button>
+                    </div>
+                    <div class="gift-card">
+                        <h4>Gifting Address</h4>
+                        <p class="gift-instruction">For gift deliveries, please contact to coordinate:<br><strong>+6281317761229 (Aulia)</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="scroll-section" id="thank-you">
+    <div class="section-content thank-you-content">
+        <h2>Thank You</h2>
+        <p>We can't wait to celebrate our special day with you. Your presence means the world to us.</p>
+        <h3>Aulia & Alief</h3>
+    </div>
+</section>
+
+    </div> <script src="script.js"></script>
+
+<div id="lightbox" class="lightbox">
+        <span class="lightbox-close">×</span>
+        <span class="lightbox-prev">❮</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <span class="lightbox-next">❯</span>
+    </div>
+
+    <div class="audio-player">
+        <audio id="wedding-song" src="weddingsong.mp3" loop></audio>
+        <button id="audio-control-btn" class="audio-control">
+            <i class="fas fa-play"></i>
+        </button>
+    </div>
+
+</body>
+</html>

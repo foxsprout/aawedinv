@@ -1,0 +1,390 @@
+/* --- Basic Setup & Variables --- */
+:root {
+    --color-umber: #4a3f35;
+    --color-latte: #F5F0E8;
+    --color-amber: #D4A373;
+    --color-charcoal: #333333;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --transition-speed: 0.25s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: var(--font-body);
+    color: var(--color-charcoal);
+    background-color: var(--color-latte);
+    overflow: hidden;
+    height: 100%;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-umber);
+}
+
+/* --- Cover Page --- */
+.cover-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('MAHE0219.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 100;
+    transition: opacity var(--transition-speed) ease-in, transform var(--transition-speed) ease-in;
+}
+
+.cover-page.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+.cover-content { color: #fff; }
+.cover-content h1 { font-size: 4rem; color: #fff; margin: 10px 0; }
+.cover-content h3 { font-size: 1.5rem; color: #fff; font-weight: 400; }
+#guestName { font-family: var(--font-body); font-size: 1.2rem; font-weight: 300; margin-bottom: 20px; color: #fff; letter-spacing: 1px; }
+
+#openInvitation {
+    padding: 12px 25px;
+    margin-top: 20px;
+    background-color: var(--color-amber);
+    color: #fff;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color var(--transition-speed);
+}
+#openInvitation:hover { background-color: #c8935e; }
+
+/* --- Scroll Snapping Container --- */
+.scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+/* --- General Section Styling --- */
+.scroll-section {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.section-content {
+    max-width: 1100px;
+    width: 90%;
+    text-align: center;
+}
+
+/* --- Background Images --- */
+#hero { background-image: linear-gradient(rgba(245, 240, 232, 0.4), rgba(245, 240, 232, 0.4)), url('8. Wedding gift.webp'); background-size: cover; background-position: center; }
+#invitation { background-color: var(--color-latte); }
+#couple { background-image: linear-gradient(rgba(245, 240, 232, 0.8), rgba(245, 240, 232, 0.8)), url('1. Wedding of.webp'); background-size: cover; background-position: center; }
+#story { background-image: linear-gradient(rgba(245, 240, 232, 0.7), rgba(245, 240, 232, 0.7)), url('5. Count the date.webp'); background-size: cover; background-position: center; }
+#events { background-image: linear-gradient(rgba(74, 63, 53, 0.7), rgba(74, 63, 53, 0.7)), url('6. Wedding event.webp'); background-size: cover; background-position: center; color: #fff; }
+#rsvp { background-image: linear-gradient(rgba(245, 240, 232, 0.85), rgba(245, 240, 232, 0.85)), url('9. Reservasi.webp'); background-size: cover; background-position: center; }
+#wishes { background-color: var(--color-latte); }
+#gallery { background-color: var(--color-umber); }
+#gifting { background-color: var(--color-latte); }
+#thank-you { background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('MAHE0060.webp'); background-size: cover; background-position: center;}
+
+/* --- Hero Section --- */
+.hero-content span { font-size: 1.5rem; }
+.hero-content h1 { font-size: 6rem; line-height: 1; }
+.hero-content h2 { font-size: 2rem; font-family: var(--font-body); font-weight: 300; }
+.calendar-button { display: inline-block; padding: 12px 25px; margin-top: 25px; background-color: var(--color-umber); color: #fff; text-decoration: none; border-radius: 5px; transition: background-color var(--transition-speed); font-size: 1rem; }
+.calendar-button:hover { background-color: #64564a; }
+
+/* --- Invitation Verse Section --- */
+.verse { font-size: 1.2rem; line-height: 1.8; font-style: italic; max-width: 600px; margin: 0 auto; }
+.verse-source { margin-top: 15px; font-weight: bold; }
+
+/* Couple */
+.couple-container { display: flex; align-items: center; justify-content: center; gap: 40px; }
+.person-details { flex: 1; }
+.couple-photo { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 6px solid var(--color-charcoal); }
+.person-details h2 { font-size: 2rem; margin-bottom: 10px; }
+.ampersand { font-family: var(--font-heading); font-size: 5rem; color: var(--color-amber); }
+
+/* --- Story Section --- */
+.story-content h2 { font-size: 3rem; margin-bottom: 30px; }
+.story-text { background: rgba(255,255,255,0.7); padding: 30px; border-radius: 10px; text-align: left; line-height: 1.7; }
+
+/* --- Events Section --- */
+#events h2, #events p, #events h3, #events strong { color: #fff; }
+.events-container h2 { font-size: 3rem; margin-bottom: 30px; }
+.event-details { display: flex; gap: 30px; justify-content: center; margin-bottom: 30px; }
+.event-card { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; flex: 1; }
+.event-card h3 { color: var(--color-amber); font-size: 1.5rem; margin-bottom: 10px; }
+.map-button { display: inline-block; padding: 12px 25px; margin-top: 20px; background-color: var(--color-amber); color: #fff; text-decoration: none; border-radius: 5px; transition: background-color var(--transition-speed); }
+.map-button:hover { background-color: #c8935e; }
+#countdown { margin-top: 30px; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
+#countdown div { background: rgba(0,0,0,0.3); padding: 10px 15px; border-radius: 5px; }
+#countdown span { display: block; font-size: 0.8rem; }
+
+/* --- RSVP Section --- */
+.rsvp-container h2 { font-size: 3rem; margin-bottom: 15px; }
+.rsvp-container p { max-width: 500px; margin: 0 auto 30px; }
+.rsvp-form { max-width: 500px; margin: 0 auto; text-align: left; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+.form-group input[type="text"], .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-family: var(--font-body); font-size: 1rem; }
+.radio-group { display: flex; flex-wrap: wrap; gap: 15px; }
+.radio-group label { font-weight: normal; display: flex; align-items: center; }
+.radio-group input { margin-right: 5px; }
+.submit-btn { display: inline-block; width: auto; padding: 12px 30px; background-color: var(--color-umber); color: #fff; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background-color var(--transition-speed); text-decoration: none; }
+.submit-btn:hover { background-color: #64564a; }
+
+/* --- Wedding Wishes Section (REVISED for better width) --- */
+#wishes .section-content {
+    max-width: 1400px; /* Make this specific section wider than others */
+}
+.wishes-container {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    align-items: flex-start;
+}
+.wishes-form-area {
+    flex: 1 1 450px; /* Give the form a base width but let it shrink */
+    max-width: 500px;
+}
+
+.wishes-form-area h2 {
+    font-size: 3rem; /* Restores the correct title size */
+    margin-bottom: 15px; /* Adds space below the title */
+}
+.wishes-form-area p {
+    margin-bottom: 30px; /* Adds a nice gap above the form */
+}
+
+.wishes-board-area {
+    flex: 1 1 60%; /* Allow the board to take up more space */
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    height: 70vh; /* Match height of other elements */
+    max-height: 550px;
+}
+.wishes-board {
+    flex-grow: 1; /* Allow the board to fill the area */
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px; /* Slightly more padding */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) inset;
+    text-align: left;
+}
+.wish-card {
+    background-color: var(--color-latte);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.wish-card .wisher-name {
+    font-weight: bold;
+    color: var(--color-umber);
+    text-align: right;
+}
+
+/* --- Gallery Section --- */
+.gallery-container h2 { font-size: 3rem; margin-bottom: 30px; color: var(--color-latte); }
+.gallery-video { width: 100%; max-width: 700px; border-radius: 10px; margin-bottom: 20px; border: 4px solid var(--color-latte); }
+.image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.image-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
+.image-grid img:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+/* --- Gifting Section --- */
+.gifting-container h2 { font-size: 3rem; margin-bottom: 20px; }
+.gifting-container > p { max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
+.gift-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.gift-card { background-color: #fff; border: 1px solid #ddd; padding: 25px; border-radius: 10px; flex-basis: 300px; }
+.gift-card h4 { color: var(--color-umber); margin-bottom: 10px; }
+.copy-btn { padding: 8px 15px; margin-top: 15px; background-color: var(--color-umber); color: #fff; border: none; cursor: pointer; border-radius: 5px; transition: background-color var(--transition-speed); }
+.copy-btn:hover { background-color: #64564a; }
+.gift-instruction { margin-top: 15px; font-size: 0.9rem; line-height: 1.5; color: #555; }
+.gift-instruction strong { color: var(--color-umber); }
+
+/* --- Thank You Section --- */
+.thank-you-content h2 {
+    font-size: 4rem;
+    color: #fff;
+}
+.thank-you-content p {
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 20px auto;
+    color: #fff;
+    line-height: 1.7;
+}
+.thank-you-content h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--color-amber);
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .cover-content h1 { font-size: 3rem; }
+    .hero-content h1 { font-size: 4rem; }
+    .couple-container { flex-direction: column; gap: 30px; }
+    .couple-photo { height: 300px; }
+    .story-text { padding: 20px; }
+    .event-details { flex-direction: column; }
+    .scroll-section { padding: 15px; }
+    .section-content { width: 100%; }
+    .wishes-board { height: 40vh; }
+}
+
+/* --- Updated Wishes Section Layout --- */
+.wishes-container {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    align-items: flex-start; /* Aligns items to the top */
+}
+.wishes-form-area, .wishes-board-area {
+    flex: 1;
+    max-height: 70vh; /* Prevents stretching */
+}
+.wishes-board-area {
+    display: flex;
+    flex-direction: column;
+    height: 70vh; /* Matches the form area */
+}
+.wishes-board {
+    flex-grow: 1; /* Allows the board to fill available space */
+}
+
+/* --- Gallery & Lightbox --- */
+.gallery-video {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.image-scroller {
+    overflow-x: auto;
+    padding-bottom: 15px; /* For the scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-amber) transparent;
+}
+.image-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+.image-grid img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    transition: opacity var(--transition-speed);
+}
+.lightbox.active { display: flex; }
+.lightbox-content {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    transition: transform var(--transition-speed);
+    transform: scale(0.8);
+}
+.lightbox.active .lightbox-content { transform: scale(1); }
+.lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1001;
+}
+.lightbox-close { top: 15px; right: 35px; }
+.lightbox-prev, .lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px;
+}
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+
+/* --- Audio Player --- */
+.audio-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 500;
+}
+.audio-control {
+    background-color: var(--color-umber);
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    font-size: 1.2rem;
+}
+.fa-spin {
+    animation: fa-spin 2s infinite linear;
+}
+
+/* --- Responsive Adjustments for New Features --- */
+@media (max-width: 768px) {
+    .wishes-container {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center; /* Center items on mobile */
+    }
+    .wishes-form-area, .wishes-board-area {
+        width: 100%;
+        max-height: 40vh;
+    }
+    .audio-player {
+        bottom: 10px;
+        right: 10px;
+    }
+}
