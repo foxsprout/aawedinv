@@ -23,7 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Cover Page Logic ---
     mainContent.style.display = 'none';
     openButton.addEventListener('click', () => {
+         // Add the class to start the animation after a tiny delay
+    setTimeout(() => {
         coverPage.classList.add('hidden');
+    }, 20); // 20 milliseconds is enough for the browser to catch up
+
         document.body.style.overflow = 'hidden';
         mainContent.style.display = 'block';
         
@@ -329,6 +333,22 @@ rsvpForm.addEventListener('submit', function (e) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Confirm Attendance';
         rsvpForm.reset();
+    });
+});
+
+// --- Fix for Android Keyboard vs. Scroll Snap ---
+const scrollContainer = document.querySelector('.scroll-container');
+const formInputs = document.querySelectorAll('#rsvp-form input, #rsvp-form textarea, #wish-form input, #wish-form textarea');
+
+formInputs.forEach(input => {
+    input.addEventListener('focus', () => {
+        // When the user starts typing, disable scroll snapping
+        scrollContainer.style.scrollSnapType = 'none';
+    });
+
+    input.addEventListener('blur', () => {
+        // When the user is done typing, re-enable scroll snapping
+        scrollContainer.style.scrollSnapType = 'y mandatory';
     });
 });
 
