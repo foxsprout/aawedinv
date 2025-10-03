@@ -11,6 +11,11 @@
     --transition-speed: 0.25s;
 }
 
+/* Hide Mobile div by default */
+.person-photo-mobile {
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -130,7 +135,8 @@ h1, h2, h3 {
 /* --- Background Images --- */
 #hero { background-image: linear-gradient(rgba(245, 240, 232, 0.4), rgba(245, 240, 232, 0.4)), url('8. Wedding gift.webp'); background-size: cover; background-position: center; }
 #invitation { background-color: var(--color-latte); }
-#couple { background-image: linear-gradient(rgba(245, 240, 232, 0.8), rgba(245, 240, 232, 0.8)), url('1. Wedding of.webp'); background-size: cover; background-position: center; }
+#bride { background-image: linear-gradient(rgba(74, 63, 53, 0.55), rgba(74, 63, 53, 0.55)), url('2. The bride.webp'); background-size: cover; background-position: center center; }
+#groom { background-image: linear-gradient(rgba(74, 63, 53, 0.55), rgba(74, 63, 53, 0.55)), url('3. The groom.webp'); background-size: cover; background-position: center center; }
 #story { background-image: linear-gradient(rgba(245, 240, 232, 0.7), rgba(245, 240, 232, 0.7)), url('5. Count the date.webp'); background-size: cover; background-position: center; }
 #events { background-image: linear-gradient(rgba(74, 63, 53, 0.3), rgba(74, 63, 53, 0.3)), url('6. Wedding event.webp'); background-size: cover; background-position: center; color: #fff; }
 #rsvp { background-image: linear-gradient(rgba(245, 240, 232, 0.6), rgba(245, 240, 232, 0.6)), url('9. Reservasi.webp'); background-size: cover; background-position: center; }
@@ -159,16 +165,35 @@ h1, h2, h3 {
 .verse { font-size: clamp(1rem, 0.8rem + 0.75vw, 1.25rem); line-height: 1.8; font-style: italic; max-width: 600px; margin: 0 auto; }
 .verse-source { margin-top: 15px; font-weight: bold; }
 
-/* Couple */
-.couple-container { display: flex; align-items: center; justify-content: center; gap: 40px; }
-.person-details { flex: 1; }
-.couple-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid var(--color-charcoal); }
-.person-details h2 {
-  /* BEFORE: font-size: 2rem; */
-  font-size: clamp(1.5rem, 1.2rem + 2vw, 2.2rem);
-  margin-bottom: 10px;
+/* --- Bride & Groom Pages --- */
+.person-content {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
-.ampersand { font-family: var(--font-heading); font-size: 5rem; color: var(--color-amber); }
+
+.person-content .title {
+    font-family: 'Dancing Script', cursive; /* Using the elegant script font */
+    font-size: clamp(2rem, 1rem + 4vw, 3rem);
+    color: var(--color-amber); /* Using your theme's accent color */
+    margin-bottom: 5px;
+}
+
+.person-content h2 {
+    color: #fff;
+    font-size: clamp(2.2rem, 1.2rem + 5vw, 3.5rem);
+    margin-bottom: 20px;
+}
+
+.person-content .child-of {
+    font-size: clamp(1rem, 0.8rem + 0.75vw, 1.25rem);
+    font-style: italic;
+}
+
+.person-content .parents {
+    font-size: clamp(1.1rem, 0.9rem + 1vw, 1.5rem);
+    margin-top: 10px;
+    line-height: 1.7;
+}
 
 /* --- Story Section --- */
 .story-content h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem);
@@ -439,7 +464,6 @@ h1, h2, h3 {
 }
 
 /* Fix for tight padding on content-heavy sections */
-.couple-container,
 .story-content,
 .gifting-container {
   padding-top: 2rem;
@@ -512,5 +536,88 @@ img, video {
 @media (min-width: 769px) {
     .wishes-board-area {
         display: flex;
+    }
+}
+
+/* --- Desktop Layout for Bride & Groom Pages --- */
+@media (min-width: 992px) {
+    /*
+     Adjusts the background focus for wide screens,
+     which looks better for portraits.
+    */
+    #bride, #groom {
+        background-position: center 30%;
+    }
+
+    /*
+     Pushes the text block for the Bride to the left.
+    */
+    #bride {
+        justify-content: flex-start;
+    }
+    #bride .person-content {
+        text-align: left;
+        padding: 0 8vw; /* Adds space from the screen edge */
+    }
+
+    /*
+     Pushes the text block for the Groom to the right.
+    */
+    #groom {
+        justify-content: flex-end;
+    }
+    #groom .person-content {
+        text-align: right;
+        padding: 0 8vw; /* Adds space from the screen edge */
+    }
+}
+
+/* --- Mobile Layout for Bride & Groom Pages --- */
+@media (max-width: 991px) {
+    #bride, #groom {
+        /* 1. Remove the background image from the main section */
+        background-image: none;
+        background-color: var(--color-latte); /* Set the text area background */
+
+        /* 2. Arrange the new photo div and the text content vertically */
+        flex-direction: column;
+        justify-content: flex-start; /* Align content to the top */
+        padding: 0; /* Override default section padding */
+    }
+
+    /* 3. Style the photo container to fill the top 55% of the screen */
+    .person-photo-mobile {
+        display: block; /* Make it visible on mobile */
+        width: 100%;
+        height: 55dvh; /* Dynamic viewport height for responsiveness */
+        background-size: cover;
+        background-position: center 30%; /* Keeps the face in frame */
+    }
+    #bride .person-photo-mobile {
+        background-image: url('2. The bride.webp');
+        background-position: 55% 30%;
+    }
+    #groom .person-photo-mobile {
+        background-image: url('3. The groom.webp');
+        background-position: 25% 30%;
+    }
+
+    /* 4. Style the text area for the bottom 45% of the screen */
+    .person-content {
+        height: 45dvh;
+        color: var(--color-charcoal); /* Dark text on light background */
+        text-shadow: none; /* Remove shadow, not needed on a solid background */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 1.5rem; /* Give the text some space */
+    }
+
+    /* 5. Adjust text colors for the light background */
+    .person-content .title, .person-content h2 {
+        color: var(--color-umber);
+    }
+    .person-content .parents {
+        line-height: 1.6;
     }
 }
