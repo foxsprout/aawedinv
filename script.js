@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 2. Wedding Wishes Fetching ---
     const googleSheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQCsPsMcZLV8Gdp6_oP7M9Hkicj--Ku0yNrGwxhbg2XGYUoCfotzasSqJUb99Uw7VwZxDR3-drNdYG7/pub?output=csv';
 
-    // REPLACE your old fetchWishes function with this new one.
+    // new fetchWishes.
 
 async function fetchWishes() {
     const wishesBoard = document.getElementById('wishes-board');
@@ -78,7 +78,7 @@ async function fetchWishes() {
             if (message) {
                 const wishCard = document.createElement('div');
                 wishCard.className = 'wish-card';
-                wishCard.innerHTML = `<p>${message}</p><p class="wisher-name">— ${name}</p>`;
+                wishCard.innerHTML = `<p>${message}</p><div class="wisher-signature"><span class="wisher-icon"><em>🤎</span> ${name}</em></div>`;
                 wishesBoard.appendChild(wishCard);
             }
         });

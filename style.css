@@ -1,6 +1,6 @@
+/* --- Basic Setup, Fonts & Variables --- */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-/* --- Basic Setup & Variables --- */
 :root {
     --color-umber: #4a3f35;
     --color-latte: #F5F0E8;
@@ -9,11 +9,6 @@
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
     --transition-speed: 0.25s;
-}
-
-/* Hide Mobile div by default */
-.person-photo-mobile {
-    display: none;
 }
 
 * {
@@ -34,6 +29,56 @@ h1, h2, h3 {
     color: var(--color-umber);
 }
 
+img, video {
+    -webkit-touch-callout: none; /* iOS Safari */
+    user-select: none; /* Standard syntax */
+}
+
+/* --- Scroll Snapping Container --- */
+.scroll-container {
+    height: 100dvh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+/* --- General Section Styling --- */
+.scroll-section {
+    min-height: 100dvh;
+    width: 100%;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 4rem clamp(1rem, 4vw, 2.5rem);
+    overflow: hidden; /* Use overflow hidden to prevent scrollbars inside sections */
+}
+
+.section-content {
+    max-width: 1100px;
+    width: 90%;
+    text-align: center;
+}
+
+/* --- Section-Specific Backgrounds --- */
+#hero { background-image: linear-gradient(rgba(245, 240, 232, 0.4), rgba(245, 240, 232, 0.4)), url('8. Wedding gift.webp'); }
+#bride { background-image: linear-gradient(rgba(74, 63, 53, 0.55), rgba(74, 63, 53, 0.55)), url('2. The bride.webp'); }
+#groom { background-image: linear-gradient(rgba(74, 63, 53, 0.55), rgba(74, 63, 53, 0.55)), url('3. The groom.webp'); }
+#story { background-image: linear-gradient(rgba(245, 240, 232, 0.5), rgba(245, 240, 232, 0.5)), url('5. Count the date.webp'); }
+#events { background-image: linear-gradient(rgba(74, 63, 53, 0.3), rgba(74, 63, 53, 0.3)), url('6. Wedding event.webp'); }
+#rsvp { background-image: linear-gradient(rgba(245, 240, 232, 0.6), rgba(245, 240, 232, 0.6)), url('9. Reservasi.webp'); }
+#wishes { background-image: linear-gradient(rgba(74, 63, 53, 0.7), rgba(74, 63, 53, 0.7)), url('MAHE0634.webp'); background-attachment: fixed; }
+#thank-you { background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('MAHE0060.webp'); }
+
+#gallery { background-color: var(--color-umber); }
+#invitation, #gifting { background-color: var(--color-latte); }
+
+/* Apply cover and center to all background images */
+#hero, #bride, #groom, #story, #events, #rsvp, #wishes, #thank-you {
+    background-size: cover;
+    background-position: center;
+}
+
 /* --- Cover Page --- */
 .cover-page {
     position: fixed;
@@ -51,176 +96,57 @@ h1, h2, h3 {
     z-index: 100;
     transition: opacity var(--transition-speed) ease-in, transform var(--transition-speed) ease-in;
 }
-
 .cover-page.hidden {
     opacity: 0;
     transform: translateY(-100%);
     pointer-events: none;
 }
-
 .cover-content { color: #fff; }
-.cover-content h1 {
-  /* BEFORE: font-size: 4rem; */
-  font-size: clamp(2.5rem, 1rem + 8vw, 4.5rem);
-  color: #fff;
-  margin: 10px 0;
-}
-.cover-content h3 {
-  /* BEFORE: font-size: 1.5rem; */
-  font-size: clamp(1.1rem, 0.8rem + 1.5vw, 1.5rem);
-  color: #fff;
-  font-weight: 400;
-}
-#guestName {
-    font-family: 'Dancing Script', cursive; /* The new font */
-    font-size: clamp(1.8rem, 1rem + 3vw, 2.5rem); /* Make it fluid */
-    font-weight: 700;
-    margin-bottom: 25px;
-    color: #fff;
-    line-height: 1.4;
-    letter-spacing: 1px;
-}
-
-.invitation-text {
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 0.8rem + 0.5vw, 1.2rem);
-  color: #fff;
-  font-weight: 300;
-  letter-spacing: 1px;
-  line-height: 1.6;
-  margin: -15px 0 10px 0; /* Adjusts spacing around the guest name */
-}
-
-#openInvitation {
-    padding: 12px 25px;
-    margin-top: 20px;
-    background-color: var(--color-amber);
-    color: #fff;
-    border: none;
-    font-family: var(--font-body);
-    font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1rem);
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color var(--transition-speed);
-}
+.cover-content h1 { font-size: clamp(2.5rem, 1rem + 8vw, 4.5rem); color: #fff; margin: 10px 0; }
+#guestName { font-family: 'Dancing Script', cursive; font-size: clamp(1.8rem, 1rem + 3vw, 2.5rem); margin-bottom: 25px; }
+.invitation-text { font-size: clamp(1rem, 0.8rem + 0.5vw, 1.2rem); font-weight: 300; letter-spacing: 1px; line-height: 1.6; margin: -15px 0 10px 0; }
+#openInvitation { padding: 12px 25px; margin-top: 20px; background-color: var(--color-amber); color: #fff; border: none; font-family: var(--font-body); font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1rem); cursor: pointer; border-radius: 5px; transition: background-color var(--transition-speed); }
 #openInvitation:hover { background-color: #c8935e; }
 
-/* --- Scroll Snapping Container --- */
-.scroll-container {
-    height: 100dvh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-}
-
-/* --- General Section Styling --- */
-.scroll-section {
-    min-height: 100dvh; /* <-- USE DVH instead of VH */
-    width: 100%;
-    scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 4rem clamp(1rem, 4vw, 2.5rem); /* This is "Top/Bottom" then "Left/Right" */
-    overflow-y: auto;
-    box-sizing: border-box; /* Good practice to include */
-}
-
-.section-content {
-    max-width: 1100px;
-    width: 90%;
-    text-align: center;
-}
-
-/* --- Background Images --- */
-#hero { background-image: linear-gradient(rgba(245, 240, 232, 0.4), rgba(245, 240, 232, 0.4)), url('8. Wedding gift.webp'); background-size: cover; background-position: center; }
-#invitation { background-color: var(--color-latte); }
-#bride { background-image: linear-gradient(rgba(74, 63, 53, 0.55), rgba(74, 63, 53, 0.55)), url('2. The bride.webp'); background-size: cover; background-position: center center; }
-#groom { background-image: linear-gradient(rgba(74, 63, 53, 0.55), rgba(74, 63, 53, 0.55)), url('3. The groom.webp'); background-size: cover; background-position: center center; }
-#story { background-image: linear-gradient(rgba(245, 240, 232, 0.7), rgba(245, 240, 232, 0.7)), url('5. Count the date.webp'); background-size: cover; background-position: center; }
-#events { background-image: linear-gradient(rgba(74, 63, 53, 0.3), rgba(74, 63, 53, 0.3)), url('6. Wedding event.webp'); background-size: cover; background-position: center; color: #fff; }
-#rsvp { background-image: linear-gradient(rgba(245, 240, 232, 0.6), rgba(245, 240, 232, 0.6)), url('9. Reservasi.webp'); background-size: cover; background-position: center; }
-#wishes { background-color: var(--color-latte); }
-#gallery { background-color: var(--color-umber); }
-#gifting { background-color: var(--color-latte); }
-#thank-you { background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('MAHE0060.webp'); background-size: cover; background-position: center;}
 
 /* --- Hero Section --- */
-.hero-content span { font-size: 1.5rem; }
-.hero-content h1 {
-  /* BEFORE: font-size: 6rem; (and 4rem on mobile) */
-  font-size: clamp(3.5rem, 1rem + 10vw, 7rem);
-  line-height: 1;
-}
-.hero-content h2 {
-  /* BEFORE: font-size: 2rem; */
-  font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);
-  font-family: var(--font-body);
-  font-weight: 300;
-}
+.hero-content h1 { font-size: clamp(3.5rem, 1rem + 10vw, 7rem); line-height: 1; }
+.hero-content h2 { font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem); font-family: var(--font-body); font-weight: 400; text-shadow: 0 2px 5px rgba(0,0,0,0.35); letter-spacing: 2px; }
 .calendar-button { display: inline-block; padding: 12px 25px; margin-top: 25px; background-color: var(--color-umber); color: #fff; text-decoration: none; border-radius: 5px; transition: background-color var(--transition-speed); font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1rem); }
 .calendar-button:hover { background-color: #64564a; }
+
+/* Countdown Timer */
+#countdown { margin-top: 35px; font-size: clamp(1.2rem, 1rem + 1.5vw, 1.8rem); display: flex; justify-content: center; gap: 20px; }
+#countdown div { background: rgba(74, 63, 53, 0.7); color: #fff; border-radius: 8px; padding: 12px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+#countdown span { display: block; font-size: clamp(0.7rem, 0.6rem + 0.5vw, 0.9rem); color: var(--color-latte); opacity: 0.9; }
 
 /* --- Invitation Verse Section --- */
 .verse { font-size: clamp(1rem, 0.8rem + 0.75vw, 1.25rem); line-height: 1.8; font-style: italic; max-width: 600px; margin: 0 auto; }
 .verse-source { margin-top: 15px; font-weight: bold; }
 
-/* --- Bride & Groom Pages --- */
-.person-content {
-    color: #fff;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
-}
-
-.person-content .title {
-    font-family: 'Dancing Script', cursive; /* Using the elegant script font */
-    font-size: clamp(2rem, 1rem + 4vw, 3rem);
-    color: var(--color-amber); /* Using your theme's accent color */
-    margin-bottom: 5px;
-}
-
-.person-content h2 {
-    color: #fff;
-    font-size: clamp(2.2rem, 1.2rem + 5vw, 3.5rem);
-    margin-bottom: 20px;
-}
-
-.person-content .child-of {
-    font-size: clamp(1rem, 0.8rem + 0.75vw, 1.25rem);
-    font-style: italic;
-}
-
-.person-content .parents {
-    font-size: clamp(1.1rem, 0.9rem + 1vw, 1.5rem);
-    margin-top: 10px;
-    line-height: 1.7;
-}
+/* --- Bride & Groom Section --- */
+.person-photo-mobile { display: none; } /* Hide mobile div by default */
+.person-content { color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+.person-content .title { font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 1rem + 4vw, 3rem); color: var(--color-amber); margin-bottom: 5px; }
+.person-content h2 { color: #fff; font-size: clamp(2.2rem, 1.2rem + 5vw, 3.5rem); margin-bottom: 20px; }
+.person-content .child-of { font-size: clamp(1rem, 0.8rem + 0.75vw, 1.25rem); font-style: italic; }
+.person-content .parents { font-size: clamp(1.1rem, 0.9rem + 1vw, 1.5rem); margin-top: 10px; line-height: 1.7; }
 
 /* --- Story Section --- */
-.story-content h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem);
-  margin-bottom: 30px;
-}
+.story-content h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem); margin-bottom: 30px; }
 .story-text { background: rgba(255,255,255,0.7); padding: 30px; border-radius: 10px; text-align: left; line-height: 1.5; }
 
-
 /* --- Events Section --- */
-#events h2, #events p, #events h3, #events strong { color: #fff; }
-.events-container h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem);
-  margin-bottom: 30px;
-}
-.event-details { display: flex; gap: 30px; justify-content: center; margin-bottom: 30px; }
-.event-card { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; flex: 1; }
-.event-card h3 { color: var(--color-amber); font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
-}
+#events .section-content h2, #events .section-content p, #events .section-content h3, #events .section-content strong { color: #fff; }
+.events-container h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem); margin-bottom: 30px; }
+.event-details { display: flex; gap: 30px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+.event-card { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; flex: 1; min-width: 250px; }
+.event-card h3 { color: var(--color-amber); font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem); }
 .map-button { display: inline-block; padding: 12px 25px; margin-top: 20px; background-color: var(--color-amber); color: #fff; text-decoration: none; border-radius: 5px; transition: background-color var(--transition-speed); font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1rem); }
 .map-button:hover { background-color: #c8935e; }
-#countdown { margin-top: 30px; font-size: clamp(1.2rem, 1rem + 1.5vw, 1.8rem); display: flex; justify-content: center; gap: 20px; }
-#countdown div { background: rgba(0,0,0,0.3); padding: 10px 15px; border-radius: 5px; }
-#countdown span { display: block; font-size: clamp(0.7rem, 0.6rem + 0.5vw, 0.9rem); }
 
-/* --- RSVP Section --- */
-.rsvp-container h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem);
-  margin-bottom: 30px;
-}
+/* --- RSVP & General Form Styling --- */
+.rsvp-container h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem); margin-bottom: 30px; }
 .rsvp-container p { max-width: 500px; margin: 0 auto 30px; }
 .rsvp-form { max-width: 500px; margin: 0 auto; text-align: left; }
 .form-group { margin-bottom: 20px; }
@@ -231,63 +157,112 @@ h1, h2, h3 {
 .radio-group input { margin-right: 5px; }
 .submit-btn { display: inline-block; width: auto; padding: 12px 30px; background-color: var(--color-umber); color: #fff; border: none; border-radius: 5px; font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1rem); cursor: pointer; transition: background-color var(--transition-speed); text-decoration: none; }
 .submit-btn:hover { background-color: #64564a; }
+#wishes .form-group label { color: var(--color-latte); }
 
-/* --- Wedding Wishes Section (REVISED for better width) --- */
-#wishes .section-content {
-    max-width: 1400px; /* Make this specific section wider than others */
+/*
+==============================================
+--- 🌟 WEDDING WISHES SECTION (REFACTORED) ---
+==============================================
+This is the core solution for the layout problem.
+*/
+
+/* Step 1: Make the section container a flexbox that can grow. */
+#wishes {
+    align-items: flex-start; /* Align content to the top of the section */
 }
+#wishes .section-content {
+    max-width: 1400px; /* Allow this section to be wider */
+    display: flex;     /* Make it a flex container */
+    flex-grow: 1;      /* CRITICAL: Allows it to grow and fill vertical space */
+}
+
+/* Step 2: The container for the two columns (form and board). */
 .wishes-container {
     display: flex;
-    gap: 40px; /* Increased gap slightly for better spacing */
+    gap: 40px;
     width: 100%;
     align-items: flex-start;
 }
+
+/* Step 3: Style the two columns. */
 .wishes-form-area {
-    flex: 1 1 400px; /* Give it a base width but allow shrinking/growing */
-    position: sticky; /* ✨ This is the magic! */
-    top: 4rem;      /* It makes the form 'stick' as you scroll the wishes */
+    flex: 1 1 400px; /* Base width, can grow/shrink */
+    position: sticky;
+    top: 4rem;
 }
-
-.wishes-form-area h2 {
-    font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem);
-  margin-bottom: 30px;
-}
-.wishes-form-area p {
-    margin-bottom: 30px; /* Adds a nice gap above the form */
-}
-
 .wishes-board-area {
-    flex: 1 1 550px; /* Allow board to be a bit wider */
-    /* REMOVED fixed height properties */
+    flex: 1 1 550px; /* Base width, can grow/shrink */
+    display: flex;       /* Make it a flex container... */
+    flex-direction: column; /* ...in the column direction. */
+    height: calc(100vh - 8rem);
 }
+
+/* Step 4: Style the form content. */
+.wishes-form-area h2, .wishes-form-area p {
+    color: var(--color-latte);
+}
+.wishes-form-area h2 { font-size: clamp(2.2rem, 1.5rem + 4vw, 3.5rem); margin-bottom: 30px; }
+.wishes-form-area p { margin-bottom: 30px; }
+
+/* Step 5: Style the board content. */
+.wishes-board-header {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: var(--color-latte);
+}
+
+/* Step 6: The scrollable board ITSELF. No fixed height, just grow! */
 .wishes-board {
-    height: 70vh; /* Set height on the board itself, not the container */
-    max-height: 600px; /* Add a max-height in pixels to prevent it from getting too tall */
+    flex-grow: 1; /* CRITICAL: This makes the board fill the remaining vertical space */
     overflow-y: auto;
-    background: #fff;
+    overscroll-behavior: contain;
+    background: transparent;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) inset;
+    box-shadow: none;
+    padding: 0;
     text-align: left;
+    min-height: 0;
 }
 .wish-card {
-    background-color: var(--color-latte);
+    background-color: rgba(245, 240, 232, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
-.wish-card .wisher-name {
-    font-weight: bold;
-    color: var(--color-umber);
-    text-align: right;
-}
+.wisher-signature { display: flex; justify-content: flex-end; align-items: center; margin-top: 10px; font-weight: bold; color: var(--color-umber); }
+.wisher-icon { margin-right: 8px; }
 
-/* --- Gallery Section --- */
+/* --- Gallery Section & Lightbox --- */
 .gallery-container h2 { font-size: 3rem; margin-bottom: 30px; color: var(--color-latte); }
 .gallery-video { width: 100%; max-width: 700px; border-radius: 10px; margin-bottom: 20px; border: 4px solid var(--color-latte); }
-.image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-.image-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
-.image-grid img:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.image-scroller { overflow-x: auto; padding-bottom: 15px; scrollbar-width: thin; scrollbar-color: var(--color-amber) transparent; }
+.image-grid { display: flex; flex-wrap: nowrap; gap: 10px; }
+.image-grid img { width: 250px; height: 180px; object-fit: cover; border-radius: 5px; cursor: pointer; transition: transform var(--transition-speed); }
+.image-grid img:hover { transform: scale(1.05); }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; overflow: hidden; }
+.lightbox.active { display: flex; }
+.lightbox-content { max-width: 85%; max-height: 85%; object-fit: contain; }
+.lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; user-select: none; z-index: 1001; }
+.lightbox-close { top: 15px; right: 35px; }
+.lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); padding: 16px; }
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+
+/* Lightbox Animations */
+@keyframes slideInFromRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes slideOutToLeft { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes slideInFromLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes slideOutToRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+.slide-out-to-left { animation: slideOutToLeft 0.3s forwards; }
+.slide-in-from-right { animation: slideInFromRight 0.3s forwards; }
+.slide-out-to-right { animation: slideOutToRight 0.3s forwards; }
+.slide-in-from-left { animation: slideInFromLeft 0.3s forwards; }
 
 /* --- Gifting Section --- */
 .gifting-container h2 { font-size: 3rem; margin-bottom: 20px; }
@@ -301,323 +276,81 @@ h1, h2, h3 {
 .gift-instruction strong { color: var(--color-umber); }
 
 /* --- Thank You Section --- */
-.thank-you-content h2 {
-    font-size: clamp(2.8rem, 1.5rem + 6vw, 4.5rem);
-  color: #fff;
-}
-.thank-you-content p {
-    font-size: clamp(1rem, 0.8rem + 0.6vw, 1.2rem);
-    max-width: 500px;
-    margin: 20px auto;
-    color: #fff;
-    line-height: 1.7;
-}
-.thank-you-content h3 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 1rem + 3vw, 2.8rem);
-    color: var(--color-amber);
-    margin-top: 30px;
-    font-weight: 700;
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .cover-content h1 { font-size: 3rem; }
-    .hero-content h1 { font-size: 4rem; }
-    .couple-container { flex-direction: column; gap: 30px; }
-    .couple-photo { height: 150px; }
-    .story-text { padding: 20px; }
-    .event-details { flex-direction: column; }
-    .scroll-section { padding: 4rem 1rem; }
-    .section-content { width: 100%; }
-    .wishes-board { height: 40vh; }
-}
-
-/* --- Updated Wishes Section Layout --- */
-.wishes-container {
-    display: flex;
-    gap: 30px;
-    width: 100%;
-    max-width: 1200px;
-    align-items: flex-start; /* Aligns items to the top */
-}
-.wishes-form-area, .wishes-board-area {
-    flex: 1;
-    max-height: 70vh; /* Prevents stretching */
-}
-.wishes-board-area {
-    display: none;
-    flex-direction: column;
-    height: 70vh; /* Matches the form area */
-}
-.wishes-board {
-    flex-grow: 1; /* Allows the board to fill available space */
-}
-
-/* --- Gallery & Lightbox --- */
-.gallery-video {
-    width: 100%;
-    max-width: 700px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.image-scroller {
-    overflow-x: auto;
-    padding-bottom: 15px; /* For the scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-amber) transparent;
-}
-.image-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-}
-.image-grid img {
-    width: 250px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform var(--transition-speed);
-}
-.image-grid img:hover {
-    transform: scale(1.05);
-}
-.lightbox {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-    transition: opacity var(--transition-speed);
-}
-.lightbox.active { display: flex; }
-.lightbox-content {
-    max-width: 85%;
-    max-height: 85%;
-    object-fit: contain;
-    transition: transform var(--transition-speed);
-    transform: scale(0.8);
-}
-.lightbox.active .lightbox-content { transform: scale(1); }
-.lightbox-close, .lightbox-prev, .lightbox-next {
-    position: absolute;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1001;
-}
-.lightbox-close { top: 15px; right: 35px; }
-.lightbox-prev, .lightbox-next {
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 16px;
-}
-.lightbox-prev { left: 10px; }
-.lightbox-next { right: 10px; }
+.thank-you-content h2 { font-size: clamp(2.8rem, 1.5rem + 6vw, 4.5rem); color: #fff; }
+.thank-you-content p { font-size: clamp(1rem, 0.8rem + 0.6vw, 1.2rem); max-width: 500px; margin: 20px auto; color: #fff; line-height: 1.7; }
+.thank-you-content h3 { font-family: var(--font-heading); font-size: clamp(1.8rem, 1rem + 3vw, 2.8rem); color: var(--color-amber); margin-top: 30px; font-weight: 700; }
 
 /* --- Audio Player --- */
-.audio-player {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 500;
-}
-.audio-control {
-    background-color: var(--color-umber);
-    color: #fff;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    font-size: 1.2rem;
-}
-.fa-spin {
-    animation: fa-spin 7s infinite linear;
-}
+.audio-player { position: fixed; bottom: 20px; right: 20px; z-index: 500; }
+.audio-control { background-color: var(--color-umber); color: #fff; border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.3); font-size: 1.2rem; }
+.fa-spin { animation: fa-spin 7s infinite linear; }
 
-/* --- Responsive Adjustments for New Features --- */
-@media (max-width: 768px) {
-    .wishes-container {
-        flex-direction: column;
-        gap: 20px;
-        align-items: center; /* Center items on mobile */
-    }
-    .wishes-form-area, .wishes-board-area {
-        width: 100%;
-        max-height: 40vh;
-    }
-    .audio-player {
-        bottom: 10px;
-        right: 10px;
-    }
-}
 
-/* Fix for tight padding on content-heavy sections */
-.story-content,
-.gifting-container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
+/*
+===================================================
+--- 🖥️ RESPONSIVE DESIGN (MEDIA QUERIES) ---
+===================================================
+*/
 
-/* Fix for vertical alignment in the Wishes section */
-#wishes .section-content {
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-}
-
-/* --- Lightbox Animation --- */
-.lightbox {
-    overflow: hidden; /* Hides the image as it slides out of view */
-}
-
-@keyframes slideInFromRight {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
-}
-@keyframes slideOutToLeft {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-}
-@keyframes slideInFromLeft {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-}
-@keyframes slideOutToRight {
-    from { transform: translateX(0); }
-    to { transform: translateX(100%); }
-}
-
-.slide-out-to-left { animation: slideOutToLeft 0.3s forwards; }
-.slide-in-from-right { animation: slideInFromRight 0.3s forwards; }
-.slide-out-to-right { animation: slideOutToRight 0.3s forwards; }
-.slide-in-from-left { animation: slideInFromLeft 0.3s forwards; }
-
-/* Disable saving images and videos on mobile */
-img, video {
-  -webkit-touch-callout: none; /* iOS Safari */
-  user-select: none; /* Standard syntax */
-}
-
-/* Restyle countdown timer for the light hero page */
-#hero #countdown {
-  margin-top: 35px; /* Add a bit more space */
-}
-
-#hero #countdown div {
-  background: rgba(74, 63, 53, 0.15); /* A subtle umber background */
-  color: var(--color-umber); /* Dark text for the numbers */
-}
-
-#hero #countdown span {
-  color: var(--color-charcoal); /* Dark text for the labels */
-}
-
-/* Add this to style your new title */
-.wishes-board-header {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 15px;
-    color: var(--color-umber);
-}
-
-/* This new rule makes the wishes board visible on desktop screens */
-@media (min-width: 769px) {
-    .wishes-board-area {
-        display: flex;
-    }
-}
-
-/* --- Desktop Layout for Bride & Groom Pages --- */
+/* --- DESKTOP FIRST (Large Screens) --- */
 @media (min-width: 992px) {
-    /*
-     Adjusts the background focus for wide screens,
-     which looks better for portraits.
-    */
-    #bride, #groom {
-        background-position: center 30%;
-    }
-
-    /*
-     Pushes the text block for the Bride to the left.
-    */
-    #bride {
-        justify-content: flex-start;
-    }
-    #bride .person-content {
-        text-align: left;
-        padding: 0 8vw; /* Adds space from the screen edge */
-    }
-
-    /*
-     Pushes the text block for the Groom to the right.
-    */
-    #groom {
-        justify-content: flex-end;
-    }
-    #groom .person-content {
-        text-align: right;
-        padding: 0 8vw; /* Adds space from the screen edge */
-    }
+    #bride, #groom { background-position: center 30%; }
+    #bride { justify-content: flex-start; }
+    #groom { justify-content: flex-end; }
+    #bride .person-content { text-align: left; padding: 0 8vw; }
+    #groom .person-content { text-align: right; padding: 0 8vw; }
 }
 
-/* --- Mobile Layout for Bride & Groom Pages --- */
+/* --- MOBILE & TABLET (Smaller Screens) --- */
 @media (max-width: 991px) {
+    /* Bride & Groom Mobile Layout */
     #bride, #groom {
-        /* 1. Remove the background image from the main section */
         background-image: none;
-        background-color: var(--color-latte); /* Set the text area background */
-
-        /* 2. Arrange the new photo div and the text content vertically */
+        background-color: var(--color-latte);
         flex-direction: column;
-        justify-content: flex-start; /* Align content to the top */
-        padding: 0; /* Override default section padding */
+        justify-content: flex-start;
+        padding: 0;
     }
-
-    /* 3. Style the photo container to fill the top 55% of the screen */
     .person-photo-mobile {
-        display: block; /* Make it visible on mobile */
+        display: block;
         width: 100%;
-        height: 55dvh; /* Dynamic viewport height for responsiveness */
+        height: 55dvh;
         background-size: cover;
-        background-position: center 30%; /* Keeps the face in frame */
     }
-    #bride .person-photo-mobile {
-        background-image: url('2. The bride.webp');
-        background-position: 55% 30%;
-    }
-    #groom .person-photo-mobile {
-        background-image: url('3. The groom.webp');
-        background-position: 25% 30%;
-    }
-
-    /* 4. Style the text area for the bottom 45% of the screen */
+    #bride .person-photo-mobile { background-image: url('2. The bride.webp'); background-position: 55% 30%; }
+    #groom .person-photo-mobile { background-image: url('3. The groom.webp'); background-position: 25% 30%; }
     .person-content {
         height: 45dvh;
-        color: var(--color-charcoal); /* Dark text on light background */
-        text-shadow: none; /* Remove shadow, not needed on a solid background */
+        color: var(--color-charcoal);
+        text-shadow: none;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 1rem 1.5rem; /* Give the text some space */
+        padding: 1rem 1.5rem;
+    }
+    .person-content .title, .person-content h2 { color: var(--color-umber); }
+
+    /* Wishes Section Mobile Layout */
+    #wishes {
+    align-items: center;
     }
 
-    /* 5. Adjust text colors for the light background */
-    .person-content .title, .person-content h2 {
-        color: var(--color-umber);
+    .wishes-container {
+        flex-direction: column;
+        align-items: center;
     }
-    .person-content .parents {
-        line-height: 1.6;
+    .wishes-form-area, .wishes-board-area {
+        width: 100%;
+        max-width: 500px; /* Constrain width on mobile for readability */
     }
+    .wishes-board-area {
+        display: none;
+        width: 100%; /* Make sure it takes full width */
+        flex-grow: 1; /* This makes it grow to fill the available space */
+}
+
+/* --- SMALL MOBILE (Extra Adjustments) --- */
+@media (max-width: 768px) {
+    .event-details { flex-direction: column; }
+    .audio-player { bottom: 10px; right: 10px; }
 }
