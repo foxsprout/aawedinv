@@ -92,7 +92,7 @@ async function fetchWishes() {
     fetchWishes();
 
     // --- 3. Countdown Timer ---
-    const countdownDate = new Date("November 16, 2025 15:00:00").getTime();
+    const countdownDate = new Date("November 16, 2025 14:30:00").getTime();
     const countdownFunction = setInterval(function() {
         const now = new Date().getTime();
         const distance = countdownDate - now;
