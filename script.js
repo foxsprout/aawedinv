@@ -56,8 +56,8 @@ async function fetchWishes() {
         
         const data = await response.text();
         
-        // Split rows and filter out any empty lines from the CSV
-        const wishes = data.split('\n').slice(1).reverse().filter(row => row.trim() !== '');
+        // Multiple lines CSV parser
+        const wishes = data.split(/\r?\n(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/g).slice(1).reverse().filter(row => row.trim() !== '');
 
         wishesBoard.innerHTML = ''; // Clear the 'loading' message
 
@@ -67,8 +67,8 @@ async function fetchWishes() {
         }
 
         wishes.forEach(row => {
-            // This robust parser handles commas inside wishes
-            const columns = row.match(/(".*?"|[^",\r\n]+)(?=\s*,|\s*$)/g) || [];
+            // This robust parser handles commas inside wishes and multiple lines
+            const columns = row.match(/("[\s\S]*?"|[^",\r\n]+)(?=\s*,|\s*$)/g) || [];
             
             // Assuming columns are [Timestamp, Name, Wish]
             // We remove quotes from the start and end of each value
@@ -78,7 +78,7 @@ async function fetchWishes() {
             if (message) {
                 const wishCard = document.createElement('div');
                 wishCard.className = 'wish-card';
-                wishCard.innerHTML = `<p>${message}</p><div class="wisher-signature"><span class="wisher-icon"><em>🤎</span> ${name}</em></div>`;
+                wishCard.innerHTML = `<p>"${message.replace(/\n/g, '<br>')}"</p><div class="wisher-signature"><span class="wisher-icon"><em>🤎</span> ${name}</em></div>`;
                 wishesBoard.appendChild(wishCard);
             }
         });
